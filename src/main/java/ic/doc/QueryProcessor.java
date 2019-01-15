@@ -17,6 +17,19 @@ public class QueryProcessor {
                            "his works of hard science fiction and popular science. \n");
             results.append(System.lineSeparator());
         }
+        if (query.toLowerCase().contains("rory shu")) {
+            results.append("Rory Shu (9 March 1998 - ) is a Chinese JMC undergraduate\n" +
+                            "living in London, famous for having a annoying bf (and his friend is\n"
+                            + "annoying too).\n");
+            results.append(System.lineSeparator());
+        }
+
+        if (query.toLowerCase().contains("nanfeng liu")) {
+            results.append("Nanfeng Liu (10 December 1998 - ) is a Chinese Computing undergraduate\n" +
+                            "living in London. \n");
+            results.append(System.lineSeparator());
+        }
+
         return results.toString();
     }
 }
