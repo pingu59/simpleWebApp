@@ -26,7 +26,19 @@ public class QueryProcessorTest {
     }
 
     @Test
+    public void knowsAboutRory() throws Exception {
+        assertThat(queryProcessor.process("rory shu"), containsString("JMC"));
+    }
+
+    @Test
+    public void knowsAboutNanfeng() throws Exception {
+        assertThat(queryProcessor.process("nanfeng liu"), containsString("Computing"));
+    }
+
+    @Test
     public void isNotCaseSensitive() throws Exception {
         assertThat(queryProcessor.process("shakespeare"), containsString("playwright"));
     }
+
+
 }

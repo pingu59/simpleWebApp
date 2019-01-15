@@ -27,6 +27,10 @@ public class WebServer {
         @Override
         protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
             String query = req.getParameter("q");
+            String type = req.getParameter("t");
+            if(type == "markdown"){
+                System.out.println("Is a mark down!");
+            }
             if (query == null) {
                 new IndexPage().writeTo(resp);
             } else {
