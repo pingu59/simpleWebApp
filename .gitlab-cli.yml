@@ -1,0 +1,17 @@
+stages:
+  - build
+  - test
+  - deploy
+
+job 1:
+  stage: build
+  script: mvn package
+
+job 2:
+  stage: test
+  script: mvn test
+
+job 3:
+  stage: deploy
+  script:
+    - dpl --provider=heroku --app=qs4617-simplewebapp --api-key=64a5793b-6ab4-40b0-a62a-b916b0ce21b9
