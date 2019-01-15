@@ -1,7 +1,9 @@
 package ic.doc;
 
+
 import ic.doc.web.HTMLResultPage;
 import ic.doc.web.IndexPage;
+import java.io.File;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -28,13 +30,18 @@ public class WebServer {
         protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
             String query = req.getParameter("q");
             String type = req.getParameter("t");
-            if(type == "markdown"){
-                System.out.println("Is a mark down!");
-            }
             if (query == null) {
                 new IndexPage().writeTo(resp);
             } else {
-                new HTMLResultPage(query, new QueryProcessor().process(query)).writeTo(resp);
+                String result = new QueryProcessor().process(query);
+                if(type == null){
+                    new HTMLResultPage(query, result).writeTo(resp);
+                }else if (type.equals("markdown")){
+                    new MarkDownCreator(query, result).writeTo(resp);
+                }else{
+                    //PDF
+
+                }
             }
         }
     }

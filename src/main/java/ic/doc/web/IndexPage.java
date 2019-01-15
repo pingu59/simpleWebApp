@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 
 public class IndexPage implements Page {
 
+
     public void writeTo(HttpServletResponse resp) throws IOException {
         resp.setContentType("text/html");
         PrintWriter writer = resp.getWriter();
@@ -21,11 +22,9 @@ public class IndexPage implements Page {
                         "<p>Enter your query in the box below: " +
                         "<form>" +
                         "<input type=\"text\" name=\"q\" />" +
-                        "<form action=\"\">" +
                         " <input type=\"radio\" name=\"t\" value=\"markdown\"> markdown<br>"+
-//                        "<input type=\"radio\" name=\"gender\" value=\"female\"> Female<br>"+
-//                        "<input type=\"radio\" name=\"gender\" value=\"other\"> Other"+
-                        "</form>"+
+////                        "<input type=\"radio\" name=\"gender\" value=\"female\"> Female<br>"+
+////                        "<input type=\"radio\" name=\"gender\" value=\"other\"> Other"+
                         "<br><br><input type=\"submit\">" +
                         "</form>" +
                         "</p>");
