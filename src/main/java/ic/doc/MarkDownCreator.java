@@ -20,7 +20,7 @@ public class MarkDownCreator implements Page {
   }
 
   private File toMarkDown(String result) throws IOException {
-    File temp = File.createTempFile(query,".md",null);
+    File temp = File.createTempFile(query,".markdown",null);
     System.out.println(temp.getAbsolutePath());
     BufferedWriter writer = new BufferedWriter(new FileWriter(temp));
     writer.write(result);
@@ -41,6 +41,7 @@ public class MarkDownCreator implements Page {
     File markdown = toMarkDown(answer);
     InputStream stream = new FileInputStream(markdown);
     writer.write(stream.readAllBytes());
+    writer.close();
     markdown.delete();
   }
 }
