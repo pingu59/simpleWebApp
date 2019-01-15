@@ -5,7 +5,7 @@ stages:
 
 job 1:
   stage: build
-  script: mvn package
+  script: mvn compile
 
 job 2:
   stage: test
@@ -14,6 +14,7 @@ job 2:
 job 3:
   stage: deploy
   script:
+     - mvn package
      - export PORT=5000
      - sh target/bin/simplewebapp
 #    - dpl --provider=heroku --app=qs4617-simplewebapp --api-key=64a5793b-6ab4-40b0-a62a-b916b0ce21b9
