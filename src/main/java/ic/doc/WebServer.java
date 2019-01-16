@@ -5,7 +5,6 @@ import ic.doc.web.IndexPage;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
-
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,7 +28,6 @@ public class WebServer {
             String query = req.getParameter("q");
             String type = req.getParameter("t");
             execute(query, type, resp);
-
         }
     }
 
@@ -44,7 +42,8 @@ public class WebServer {
                 System.out.println("Is a markdown");
                 new MarkDownCreator(query, result).writeTo(resp);
             }else{
-                //PDF
+                System.out.println("Is a pdf");
+                new PdfCreator(query, result).writeTo(resp);
             }
         }
     }

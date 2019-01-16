@@ -19,8 +19,13 @@ public class MarkDownCreator implements Page {
     this.answer = answer;
   }
 
-  private File toMarkDown(String result) throws IOException {
-    File temp = File.createTempFile(query,".markdown",null);
+  public static File toMarkDown(String result, String query) throws IOException {
+    if (result == null || result.isEmpty()) {
+      result = "# Sorry\nSorry, we didn't understand" + query;
+    }else{
+      result ="# "+ query + "\n" + result;
+    }
+    File temp = File.createTempFile(query,".md",null);
     System.out.println(temp.getAbsolutePath());
     BufferedWriter writer = new BufferedWriter(new FileWriter(temp));
     writer.write(result);
@@ -30,15 +35,9 @@ public class MarkDownCreator implements Page {
 
   @Override
   public void writeTo(HttpServletResponse resp) throws IOException {
-    resp.setContentType("text/md");
+    resp.setContentType("text/markdown; variant=CommonMark");
     OutputStream writer = resp.getOutputStream();
-    // Content
-    if (answer == null || answer.isEmpty()) {
-      answer = "# Sorry\nSorry, we didn't understand" + query;
-    }else{
-      answer ="# "+ query + "\n" + answer;
-    }
-    File markdown = toMarkDown(answer);
+    File markdown = toMarkDown(answer, query);
     InputStream stream = new FileInputStream(markdown);
     writer.write(stream.readAllBytes());
     writer.close();
