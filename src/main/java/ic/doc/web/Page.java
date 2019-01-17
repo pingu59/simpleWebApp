@@ -6,4 +6,5 @@ import java.io.IOException;
 public interface Page {
     void writeTo(HttpServletResponse resp) throws IOException, InterruptedException;
     String getAnswer();
+    String getQuery();
 }

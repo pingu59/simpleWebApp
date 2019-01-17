@@ -13,4 +13,9 @@ public abstract class NoneIndexPage implements Page{
   public String getAnswer(){
     return answer;
   }
+
+  @Override
+  public String getQuery(){
+    return query;
+  }
 }

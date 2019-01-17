@@ -47,13 +47,7 @@ public class doGetTest {
     Page p = execute("shakespeare", "markdown");
     assertTrue(p instanceof MarkDownPage);
   }
-
-  @Test
-  public void emptyQueryReturnsHTML(){
-    Page p = execute(null, null);
-    assertTrue(p instanceof IndexPage);
-  }
-
+  
   //test that there is a markdown file created
   @Test
   public void markdownFileCreated() throws Exception {
@@ -76,5 +70,13 @@ public class doGetTest {
     File pdf = PdfPage.create_pdf(markDown, query);
 
     assertTrue(pdf.isFile());
+  }
+
+  @Test
+  public void queryIsToShort() {
+    Page p = execute("s", null);
+    assertTrue(p.getQuery().equals("s   "));
+    p = execute("", null);
+    assertTrue(p.getQuery().equals("   "));
   }
 }

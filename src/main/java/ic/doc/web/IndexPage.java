@@ -5,6 +5,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 public class IndexPage implements Page {
+    @Override
+    public String getQuery(){
+        return null;
+    }
 
     public void writeTo(HttpServletResponse resp) throws IOException {
         resp.setContentType("text/html");

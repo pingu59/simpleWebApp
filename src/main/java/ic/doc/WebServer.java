@@ -39,18 +39,23 @@ public class WebServer {
 
 
     public static Page execute(String query, String type) {
-            if (query == null) {
-                return new IndexPage();
-            } else {
-                String result = new QueryProcessor().process(query);
-                if(type == null){
-                    return new HTMLResultPage(query, result);
-                }else if (type.equals("markdown")){
-                    return new MarkDownPage(query, result);
-                }else{
-                    return new PdfPage(query, result);
-                }
+        if (query.length() <3){
+            query += "   ";
+                /* java.lang.IllegalArgumentException: Prefix string
+                    "" too short: length must be at least 3 */
+        }
+        if (query == null) {
+            return new IndexPage();
+        } else {
+            String result = new QueryProcessor().process(query);
+            if(type == null){
+                return new HTMLResultPage(query, result);
+            }else if (type.equals("markdown")){
+                return new MarkDownPage(query, result);
+            }else{
+                return new PdfPage(query, result);
             }
+        }
     }
 
 
