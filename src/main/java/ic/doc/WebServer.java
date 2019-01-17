@@ -43,7 +43,11 @@ public class WebServer {
                 new MarkDownCreator(query, result).writeTo(resp);
             }else{
                 System.out.println("Is a pdf");
-                new PdfCreator(query, result).writeTo(resp);
+                try{
+                    new PdfCreator(query, result).writeTo(resp);
+                }catch (InterruptedException e){
+
+                }
             }
         }
     }

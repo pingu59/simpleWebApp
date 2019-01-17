@@ -1,13 +1,8 @@
 package ic.doc;
 
 import static ic.doc.MarkDownCreator.toMarkDown;
-
 import ic.doc.web.Page;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import javax.servlet.http.HttpServletResponse;
 
 public class PdfCreator implements Page {
@@ -21,14 +16,20 @@ public class PdfCreator implements Page {
   }
 
   @Override
-  public void writeTo(HttpServletResponse resp) throws IOException {
+  public void writeTo(HttpServletResponse resp) throws IOException, InterruptedException {
     resp.setContentType("application/pdf");
     OutputStream writer = resp.getOutputStream();
     File markdown = toMarkDown(answer, query);
     // turn markdown to a pdf using pandoc
-    InputStream stream = new FileInputStream(markdown);
-    writer.write(stream.readAllBytes());
+    ProcessBuilder pb = new ProcessBuilder("pandoc",markdown.getName() , "-o","res.pdf");
+    File dir = new File("/tmp");
+    pb.directory(dir);
+    Process process = pb.start();
+    process.waitFor();
+    File pdf = new File("/tmp/res.pdf");
+    writer.write(new FileInputStream(pdf).readAllBytes());
     writer.close();
     markdown.delete();
+    pdf.delete();
   }
 }
