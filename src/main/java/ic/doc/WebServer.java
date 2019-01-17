@@ -13,8 +13,7 @@ import java.io.IOException;
 public class WebServer {
 
     public WebServer() throws Exception {
-        Server server = new Server(Integer.valueOf(System.getenv("PORT")));
-
+        Server server = new Server(5000);//Integer.valueOf(System.getenv("PORT")));
         ServletHandler handler = new ServletHandler();
         handler.addServletWithMapping(new ServletHolder(new Website()), "/*");
         server.setHandler(handler);

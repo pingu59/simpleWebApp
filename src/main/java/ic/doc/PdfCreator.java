@@ -21,12 +21,12 @@ public class PdfCreator implements Page {
     OutputStream writer = resp.getOutputStream();
     File markdown = toMarkDown(answer, query);
     // turn markdown to a pdf using pandoc
-    ProcessBuilder pb = new ProcessBuilder("pandoc",markdown.getName() , "-o",query + ".pdf");
+    ProcessBuilder pb = new ProcessBuilder("pandoc",markdown.getName() , "-o", "temp.pdf");
     File dir = new File("/tmp");
     pb.directory(dir);
     Process process = pb.start();
     process.waitFor();
-    File pdf = new File("/tmp/"+query+".pdf");
+    File pdf = new File("/tmp/temp.pdf");
     writer.write(new FileInputStream(pdf).readAllBytes());
     writer.close();
     markdown.delete();
