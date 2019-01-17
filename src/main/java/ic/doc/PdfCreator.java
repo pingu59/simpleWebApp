@@ -21,12 +21,12 @@ public class PdfCreator implements Page {
     OutputStream writer = resp.getOutputStream();
     File markdown = toMarkDown(answer, query);
     // turn markdown to a pdf using pandoc
-    ProcessBuilder pb = new ProcessBuilder("pandoc",markdown.getName() , "-o",query + ".pdf");
+    ProcessBuilder pb = new ProcessBuilder("pandoc",markdown.getName(), "-o",query + ".pdf");
     File dir = new File("/tmp");
     pb.directory(dir);
     System.out.println("The new pdf will have name of "+query + ".pdf");
     Process process = pb.start();
-    process.waitFor();
+    System.out.println("The process returns the result :" + process.waitFor());
     System.out.println("=================================================");
     String[] strs = dir.list();
     for(String str: strs){
@@ -36,7 +36,10 @@ public class PdfCreator implements Page {
     File pdf = new File("/tmp/"+query+".pdf");
     writer.write(new FileInputStream(pdf).readAllBytes());
     writer.close();
-    markdown.delete();
-    pdf.delete();
+    boolean md = markdown.delete();
+    boolean pd = pdf.delete();
+    if(md && pd){
+      System.out.println("Temporary files successfully deleted");
+    }
   }
 }
