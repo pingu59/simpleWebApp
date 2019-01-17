@@ -3,7 +3,6 @@ import static ic.doc.WebServer.execute;
 import static junit.framework.TestCase.assertTrue;
 
 import ic.doc.web.HTMLResultPage;
-import ic.doc.web.IndexPage;
 import ic.doc.web.Page;
 import java.io.File;
 import org.junit.Test;
@@ -47,7 +46,7 @@ public class doGetTest {
     Page p = execute("shakespeare", "markdown");
     assertTrue(p instanceof MarkDownPage);
   }
-  
+
   //test that there is a markdown file created
   @Test
   public void markdownFileCreated() throws Exception {
