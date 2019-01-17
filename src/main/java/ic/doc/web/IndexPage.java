@@ -6,7 +6,6 @@ import java.io.PrintWriter;
 
 public class IndexPage implements Page {
 
-
     public void writeTo(HttpServletResponse resp) throws IOException {
         resp.setContentType("text/html");
         PrintWriter writer = resp.getWriter();
@@ -31,6 +30,11 @@ public class IndexPage implements Page {
         // Footer
         writer.println("</body>");
         writer.println("</html>");
+    }
+
+    @Override
+    public String getAnswer(){
+        return null;
     }
     
 }

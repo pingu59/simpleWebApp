@@ -4,14 +4,18 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class HTMLResultPage implements Page {
-
-    private final String query;
-    private final String answer;
+public class HTMLResultPage extends NoneIndexPage {
 
     public HTMLResultPage(String query, String answer) {
-        this.query = query;
+        super(query,answer);
+        if (answer == null || answer.isEmpty()) {
+            answer = "<h1>Sorry</h1>\n<p>Sorry, we didn't understand <em>"+ query + "</em></p>";
+        } else {
+            answer = "<h1>" + query + "</h1>\n<p>"
+                + answer.replace("\n", "<br>") + "</p>";
+        }
         this.answer = answer;
+
     }
 
     public void writeTo(HttpServletResponse resp) throws IOException {
@@ -24,13 +28,7 @@ public class HTMLResultPage implements Page {
         writer.println("<body>");
 
         // Content
-        if (answer == null || answer.isEmpty()) {
-            writer.println("<h1>Sorry</h1>");
-            writer.print("<p>Sorry, we didn't understand <em>" + query + "</em></p>");
-        } else {
-            writer.println("<h1>" + query + "</h1>");
-            writer.println("<p>" + answer.replace("\n", "<br>") + "</p>");
-        }
+        writer.println(answer);
 
         writer.println("<p><a href=\"/\">Back to Search Page</a></p>");
 
