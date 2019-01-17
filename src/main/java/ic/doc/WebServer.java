@@ -13,7 +13,7 @@ import java.io.IOException;
 public class WebServer {
 
     public WebServer() throws Exception {
-        Server server = new Server(5000);//Integer.valueOf(System.getenv("PORT")));
+        Server server = new Server(Integer.valueOf(System.getenv("PORT")));
 
         ServletHandler handler = new ServletHandler();
         handler.addServletWithMapping(new ServletHolder(new Website()), "/*");
@@ -39,10 +39,8 @@ public class WebServer {
             if(type == null){
                 new HTMLResultPage(query, result).writeTo(resp);
             }else if (type.equals("markdown")){
-                System.out.println("Is a markdown");
                 new MarkDownCreator(query, result).writeTo(resp);
             }else{
-                System.out.println("Is a pdf");
                 try{
                     new PdfCreator(query, result).writeTo(resp);
                 }catch (InterruptedException e){

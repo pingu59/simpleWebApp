@@ -21,7 +21,7 @@ public class MarkDownCreator implements Page {
 
   public static File toMarkDown(String result, String query) throws IOException {
     if (result == null || result.isEmpty()) {
-      result = "# Sorry\nSorry, we didn't understand" + query;
+      result = "# Sorry\nSorry, we didn't understand " + query;
     }else{
       result ="# "+ query + "\n" + result;
     }
