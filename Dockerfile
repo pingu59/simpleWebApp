@@ -2,8 +2,8 @@ FROM openjdk:11
 
 WORKDIR /app
 
-RUN sudo apt-get update
-RUN sudo apt-get -y install maven pandoc texlive-latex-base texlive-fonts-recommended
+RUN apt-get update
+RUN apt-get -y install maven pandoc texlive-latex-base texlive-fonts-recommended
 
 COPY . /app
 
