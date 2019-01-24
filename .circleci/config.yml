@@ -23,11 +23,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: update
-          command: apt-get update
-      - run:
           name: pandoc
-          command: apt-get -y install maven pandoc texlive-latex-base texlive-fonts-recommended
+          command: install maven pandoc texlive-latex-base texlive-fonts-recommended
       # Download and cache dependencies
       - restore_cache:
           keys:
