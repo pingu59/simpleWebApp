@@ -17,6 +17,7 @@ public class IndexPage implements Page {
         // Header
         writer.println("<html>");
         writer.println("<head><title>Welcome</title></head>");
+        writer.println("<h2><title>This is the Circle CI extension </title></h2>");
         writer.println("<body>");
 
         // Content
