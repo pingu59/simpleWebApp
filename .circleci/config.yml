@@ -23,9 +23,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: pandoc
-          command: install maven
-      - run:
           name: pandoc2
           command: install texlive-fonts-recommended
       - run:
