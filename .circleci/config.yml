@@ -52,9 +52,11 @@ jobs:
       - run: mvn integration-test
 
   deploy:
-    orbs:
-      heroku: circleci/heroku@1.0.0
-    workflows:
-      heroku_deploy:
-        jobs:
-        - heroku/deploy-via-git
+    docker:
+    - image: buildpack-deps:trusty
+    steps:
+    - checkout
+    - run:
+        name: Deploy Master to Heroku
+        command:
+          git push https://heroku:dbac4f33-4a03-4e58-a345-9773299bc3aa@git.heroku.com/circleciswa.git master
