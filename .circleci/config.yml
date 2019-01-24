@@ -60,3 +60,15 @@ jobs:
         name: Deploy Master to Heroku
         command:
           git push https://heroku:dbac4f33-4a03-4e58-a345-9773299bc3aa@git.heroku.com/circleciswa.git master
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+    - build
+    - deploy:
+        requires:
+        - build
+        filters:
+          branches:
+            only: master
