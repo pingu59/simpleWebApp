@@ -8,12 +8,7 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/openjdk:11-jdk
-      - run:
-          name: update
-          command : apt-get update
-      - run:
-          name: pandoc
-          command: apt-get -y install maven pandoc texlive-latex-base texlive-fonts-recommended
+
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
@@ -27,7 +22,12 @@ jobs:
     
     steps:
       - checkout
-
+      - run:
+          name: update
+          command: apt-get update
+      - run:
+          name: pandoc
+          command: apt-get -y install maven pandoc texlive-latex-base texlive-fonts-recommended
       # Download and cache dependencies
       - restore_cache:
           keys:
