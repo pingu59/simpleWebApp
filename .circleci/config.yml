@@ -30,7 +30,7 @@ jobs:
           command: sudo apt-get install texlive-fonts-recommended
       - run:
           name: pandoc3
-          command: sudo apt-get instal texlive-latex-base
+          command: sudo apt-get install texlive-latex-base
       - run:
           name: pandoc4
           command: sudo apt-get install pandoc
