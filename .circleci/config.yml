@@ -24,16 +24,16 @@ jobs:
       - checkout
       - run:
           name: pandoc
-          command: apt-get install maven
+          command: sudo apt-get install maven
       - run:
           name: pandoc2
-          command: apt-get install texlive-fonts-recommended
+          command: sudo apt-get install texlive-fonts-recommended
       - run:
           name: pandoc3
-          command: apt-get instal texlive-latex-base
+          command: sudo apt-get instal texlive-latex-base
       - run:
           name: pandoc4
-          command: apt-get install pandoc
+          command: sudo apt-get install pandoc
       # Download and cache dependencies
       - restore_cache:
           keys:
